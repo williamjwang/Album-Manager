@@ -1,9 +1,12 @@
-public class Collection {
-    public class Collection {
+public class Collection
+{
+    public class Collection
+    {
         private Album[] albums;
         private int numAlbums; //number of albums currently in the collection
 
-        private int find(Album album) {
+        private int find(Album album)
+        {
             for (int i = 0; i < numAlbums; i++)
             {
                 if (album.equals(albums[i]))
@@ -13,6 +16,7 @@ public class Collection {
             }
             return -1;
         } //find the album index, or return NOT_FOUND
+
         private void grow()
         {
             // last four albums may be void
@@ -21,7 +25,7 @@ public class Collection {
             {
                 albumsCopy[i].title = albums[i].title;
                 albumsCopy[i].artist = albums[i].artist;
-                albumsCopy[i].Genre = albums[i].genre;
+                albumsCopy[i].Genre = albums[i].Genre;
                 albumsCopy[i].Date = albums[i].Date;
                 albumsCopy[i].isAvailable = albums[i].isAvailable;
             }
@@ -36,7 +40,8 @@ public class Collection {
                 grow();
             }
             int i = 0;
-            while (i < numAlbums) {
+            while (i < numAlbums)
+            {
                 if ()
             }
         }

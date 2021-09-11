@@ -2,9 +2,36 @@ public class Album
 {
     private String title;
     private String artist;
-    private Genre genre; //enum class; Classical, Country, Jazz, Pop, Unknown
+    // private enum Genre = {}; //enum class; Classical, Country, Jazz, Pop, Unknown
     private Date releaseDate;
     private boolean isAvailable;
+
+    enum Genre
+    {
+        Classical,
+        Country,
+        Jazz,
+        Pop,
+        Unknown
+    }
+
+//    public Album()
+//    {
+//        this.title = title;
+//        this.artist = artist;
+//        this.genre = Genre.Unknown;
+//        this.releaseDate = releaseDate;
+//        this.isAvailable = isAvailable;
+//    }
+
+    public Album(String title, String artist, Genre genre, Date releaseDate, boolean isAvailable)
+    {
+        this.title = title;
+        this.artist = artist;
+        this.genre = Genre.Unknown;
+        this.releaseDate = releaseDate;
+        this.isAvailable = isAvailable;
+    }
 
     @Override
     public boolean equals(Object obj)
@@ -17,13 +44,14 @@ public class Album
     public String toString()
     {
         //Need to create genre class, create genre.type
-        //Need to create Data class, create releaseDate.Date
         //isAvailable?
+
+        String displayDate = (String)releaseDate.month + "/" + (String)releaseDate.day + "/" + (String)releaseDate.year;
 
         String avail;
         if (isAvailable == true) avail = "is available";
-        else {}
+        else avail = "is not available";
 
-        return(title + "::" + artist + "::" + genre + "::" + releaseDate + "::" + isAvailable);
+        return(title + "::" + artist + "::" + genre + "::" + displayDate + "::" + avail);
     }
 }
