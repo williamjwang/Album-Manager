@@ -39,15 +39,61 @@ public class Collection
             {
                 grow();
             }
+            albums[numAlbums] = album;
+            numAlbums++;
+        }
+        public boolean remove(Album album)
+        {
             int i = 0;
             while (i < numAlbums)
             {
-                if ()
+                if (albums[i].title.equals(album.title) && albums[i].artist.equals(album.artist))
+                {
+                    int j = i + 1;
+                    while (j < numAlbums - 1)
+                    {
+                        albums[i] = albums[j];
+                        j++;
+                    }
+                    albums[numAlbums] = null;
+                    numAlbums--;
+                    return true;
+                }
+                i++;
             }
+            System.out.println();
+            return false;
         }
-        public boolean remove(Album album) {}
-        public boolean lendingOut(Album album) {} //set to not available
-        public boolean returnAlbum(Album album) {} //set to available
+        public boolean lendingOut(Album album)
+        {
+            int i = 0;
+            while (i < numAlbums)
+            {
+                if (albums[i].title.equals(album.title) && albums[i].artist.equals(album.artist))
+                {
+                    albums[i].isAvailable = false;
+                    return true;
+                }
+                i++;
+            }
+            System.out.println();
+            return false;
+        } //set to not available
+        public boolean returnAlbum(Album album)
+        {
+            int i = 0;
+            while (i < numAlbums)
+            {
+                if (albums[i].title.equals(album.title) && albums[i].artist.equals(album.artist))
+                {
+                    albums[i].isAvailable = true;
+                    return true;
+                }
+                i++;
+            }
+            System.out.println();
+            return false;
+        } //set to available
         public void print() {
             System.out.println("*List of albums in the collection");
             for (int i = 0; i < numAlbums; i++)
@@ -56,8 +102,13 @@ public class Collection
             }
             System.out.println("");
         } //display the list without specifying the order
-        public void printByReleaseDate() {}
-        public void printByGenre() {}
+        public void printByReleaseDate()
+        {
+            System.out.println("*List of albums in the collection");
+        }
+        public void printByGenre()
+        {
+            System.out.println("*List of albums in the collection");
         }
     }
 }
