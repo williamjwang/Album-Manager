@@ -93,14 +93,60 @@ public class Collection {
         {
 
         }
-    }zz
+    }
 
-    public void printByGenre() {
-        Album[] genreAlbum = new Album[numAlbums];
+    public Album[] organizeGenre(Album[] genreAlbum)
+    {
         int i = 0;
         for (int j = 0; j < numAlbums; j++)
         {
+            if (albums[j].Genre.equals("classical"))
+            {
+                genreAlbum[i] = albums[j];
+                i++;
+            }
+        }
+        for (int k = 0; k < numAlbums; k++)
+        {
+            if (albums[k].Genre.equals("country"))
+            {
+                genreAlbum[i] = albums[k];
+                i++;
+            }
+        }
+        for (int l = 0; l < numAlbums; l++)
+        {
+            if (albums[l].Genre.equals("jazz"))
+            {
+                genreAlbum[i] = albums[l];
+                i++;
+            }
+        }
+        for (int m = 0; m < numAlbums; m++)
+        {
+            if (albums[m].Genre.equals("pop"))
+            {
+                genreAlbum[i] = albums[m];
+                i++;
+            }
+        }
+        for (int n = 0; n < numAlbums; n++)
+        {
+            if (albums[n].Genre.equals("unknown"))
+            {
+                genreAlbum[i] = albums[n];
+                i++;
+            }
+        }
+        return genreAlbum;
+    }
 
+    public void printByGenre() {
+        Album[] genreAlbum = new Album[numAlbums];
+        genreAlbum = organizeGenre(genreAlbum);
+        for (int i = 0; i < numAlbums; i++)
+        {
+            System.out.println(genreAlbum[i].toString());
         }
         System.out.println("*List of albums in the collection");
     }
