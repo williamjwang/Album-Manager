@@ -1,3 +1,5 @@
+//package albums;
+
 import java.util.Scanner;
 
 public class CollectionManager
