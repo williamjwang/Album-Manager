@@ -1,5 +1,15 @@
+//package albums;
 import java.util.Calendar;
 
+/**
+ * This class defines the Date abstract data type with year, month and day.
+ * ...
+ * There are two methods in this class: isValid() and compareTo():
+ * The isValid() method checks whether a given date is valid
+ * The compareTo() method is an overridden method which compares two Date objects.
+ * ...
+ * @author William Wang, Joshua Sze
+ */
 public class Date implements Comparable<Date>
 {
     public static final int QUADRENNIAL = 4;
@@ -20,28 +30,67 @@ public class Date implements Comparable<Date>
     public static final int Nov = 11;
     public static final int Dec = 12;
 
-
     private int year;
     private int month;
     private int day;
 
+    /**
+     * This method returns the year of the Date object
+     * @return year of the Date object
+     */
+    public int getYear()
+    {
+        return year;
+    }
+    /**
+     * This method returns the month of the Date object
+     * @return month of the Date object
+     */
+    public int getMonth()
+    {
+        return month;
+    }
+    /**
+     * This method returns the day of the Date object
+     * @return day of the Date object
+     */
+    public int getDay()
+    {
+        return day;
+    }
+
+    /**
+     * This method returns a Date object
+     * @param date a String "mm/dd/yyyy"
+     */
     public Date(String date)
     {
         String dateCopy[] = date.split("/", 0);
-
         this.month = Integer.parseInt(dateCopy[0]);
         this.day = Integer.parseInt(dateCopy[1]);
         this.year = Integer.parseInt(dateCopy[2]);
     } //take “mm/dd/yyyy” and create a Date object
 
 
+    /**
+     * This method returns a Date object with today's date
+     */
     public Date()
     {
-        this.month = month;
-        this.day = day;
-        this.year = year;
+        Calendar today = Calendar.getInstance();
+        this.year= today.get(Calendar.YEAR);
+        this.month = today.get(Calendar.MONTH);
+        this.day = today.get(Calendar.DAY_OF_MONTH);
+
+        //We increment the month since the month is return as 0-11, i.e. Jan = 0
+        this.month++;
     } //create an object with today’s date (see Calendar class)
 
+    /**
+     * This method checks whether a given year is a leap year
+     * @param year an int yyyy
+     * @return true if the input year is a leap year
+     */
     public static boolean isLeapYear(int year)
     {
         if (year % QUADRENNIAL == 0)
@@ -53,14 +102,19 @@ public class Date implements Comparable<Date>
                     return true;
                 }
                 else return false;
-
             }
             else return true;
         }
         else return false;
     }
 
-    //Checks whether the day is invalid for the given month
+    /**
+     * This method checks whether the day is invalid for the given month and year
+     * @param year an integer yyyy
+     * @param month an integer mm
+     * @param day an integer dd
+     * @return true if the date is valid for the given month mm and year yyyy
+     */
     public static boolean isValidDay(int year, int month, int day)
     {
         //No months of the year have more than 31 days
@@ -92,23 +146,99 @@ public class Date implements Comparable<Date>
         return true;
     }
 
+    /**
+     * This method checks whether a given date is valid.
+     *
+     * @return true if the given date is valid
+     */
     public boolean isValid()
     {
-        if (year < THE_EIGHTYS) return false;
-        //need condition here to check if date is beyond today's date
-        //check if date is beyond today's date
-        //Calendar cal = Calendar.getInstance();
+        System.out.print(month + " " + day + " " + year);
+        if (year < THE_EIGHTYS) { System.out.println("returned false 1"); return false; }
 
-        if (isValidDay(year, month, day) == false) return false;
+        //Check if date is after today's date
+        Calendar today = Calendar.getInstance();
+
+        if (year > today.get(Calendar.YEAR))
+        {
+//            System.out.println("returned false 2");
+            return false;
+        }
+        if ((year == today.get(Calendar.YEAR)) && (month > today.get(Calendar.MONTH) + 1))
+        {
+//            System.out.println("returned false 3");
+            return false;
+        }
+        if ((year == today.get(Calendar.YEAR))
+                && (month == today.get(Calendar.MONTH) + 1)
+                    && (day > today.get(Calendar.DAY_OF_MONTH)))
+        {
+//            System.out.println("returned false 4");
+            return false;
+        }
+
+        //Check if the date is valid for the given year and month
+        if (isValidDay(year, month, day) == false)
+        {
+//            System.out.println("returned false 5");
+            return false;
+        }
         return true;
     }
 
+    /**
+     * This month compares two Date abstract data types
+     * @param date a Date object
+     * @return BEFORE, SAME_DATE, or AFTER if for date1.compareTo(date2), date1 occurs before date 2,
+     *      date 1 is the same as date 2, or date1 occurs after date 2, respectively
+     */
     @Override
     public int compareTo(Date date)
     {
-        if (this.year != date.year) return 0;
-        if (this.month != date.month) return 0;
-        if (this.day != date.day) return 0;
-        return 1;
+        int BEFORE = -1;
+        int SAME_DATE = 0;
+        int AFTER = 1;
+
+        if (this.year < date.year) return BEFORE;
+        else if (this.year == date.year)
+        {
+            if (this.month > date.month) return AFTER;
+            else if (this.month < date.month) return BEFORE;
+            else
+            {
+                if (this.day > date.day) return AFTER;
+                if (this.day < date.day) return BEFORE;
+                if (this.day == date.day) return SAME_DATE;
+            }
+        }
+        //we know this.year > date.year here, so we return AFTER
+        return AFTER;
+    }
+
+    /**
+     * Testbed main for Data class
+     */
+    public static void main(String[] args)
+    {
+        Date d1 = new Date("8/5/2021");
+        System.out.println(String.valueOf(d1.month));
+        System.out.println(String.valueOf(d1.day));
+        System.out.println(String.valueOf(d1.year));
+        if (d1.isValid() == true) System.out.println("d1 is a valid date!\n");
+        else System.out.println("d1 is an invalid date\n");
+
+        Date d2 = new Date();
+        System.out.println(String.valueOf(d2.month));
+        System.out.println(String.valueOf(d2.day));
+        System.out.println(String.valueOf(d2.year));
+        System.out.print("\n");
+        System.out.println(String.valueOf(d1.compareTo(d2)));
+
+        Date d3 = new Date("2/29/2020");
+        Date d4 = new Date("2/29/2021");
+        if (d3.isValid()) System.out.println("d3 is valid");
+        else System.out.println("d3 is invalid");
+        if (d4.isValid()) System.out.println("d4 is valid");
+        else System.out.println("d4 is invalid");
     }
 }
