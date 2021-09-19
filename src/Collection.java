@@ -1,155 +1,228 @@
-//package albums;
+package albums;
 
-public class Collection {
+/**
+ * This class defines the Collection data type
+ *
+ * There are nine methods in this class:
+ * The find() method returns the index of the album in the albums array, or if it is not found
+ * The grow() method increases the size of the albums array by 4
+ * The add() method adds an album to the albums array
+ * The remove() method removes an album from the albums array
+ * The lendingOut() method sets the isAvailable boolean attribute of an album in the albums array to false if it exists
+ * The returnAlbum() method sets the isAvailable boolean attribute of an album in the albums array to true if it exists
+ * The print() method displays all albums in the albums array
+ * The printByReleaseDate() method displays all albums in the albums array by increasing release date
+ * The printByGenre() method displays all albums in the albums array by genre
+ *
+ * @author William Wang, Joshua Sze
+ */
+public class Collection
+{
     private Album[] albums;
     private int numAlbums; //number of albums currently in the collection
 
-    private int find(Album album) {
-        for (int i = 0; i < numAlbums; i++) {
-            if (album.equals(albums[i])) {
-                return i;
-            }
+    private static final int NOT_FOUND = 0;
+
+    /**
+     * This method returns the albums array of the Collection object
+     * @return albums array of the Collection object
+     */
+    public Album[] getAlbums()
+    {
+        return albums;
+    }
+
+    /**
+     * This method returns the number of albums in the Collection object
+     * @return int numAlbums of the Collection object
+     */
+    public int getNumAlbums()
+    {
+        return numAlbums;
+    }
+
+    /**
+     * This method returns a Collection object
+     */
+    public Collection()
+    {
+        int initialAlbumsSize = 4;
+        this.albums = new Album[initialAlbumsSize];
+        this.numAlbums = 0;
+    }
+
+    /**
+     * This method returns the index of a given Album object if it is in the albums array, and NOT_FOUND otherwise
+     * @param album An Album object
+     * @return index of given Album object or NOT_FOUND
+     */
+    private int find(Album album)
+    {
+        for (int i = 0; i < numAlbums; i++)
+        {
+//            if (album.getTitle().equals(albums[i].getTitle()))
+//            {
+//                if (album.getArtist().equals(albums[i].getArtist()))
+//                {
+//                    if (album.getGenre().toString().equals(albums[i].getGenre().toString()))
+//                    {
+//                        if (album.getDate().compareTo(albums[i].getDate()) == 0)
+//                        {
+//                            if (album.getIsAvailable() == albums[i].getIsAvailable())
+//                            {
+//                                return i;
+//                            }
+//                            else continue;
+//                        }
+//                        else continue;
+//                    }
+//                    else continue;
+//                }
+//                else continue;
+//            }
+//            else continue;
+            if (album.equals(albums[i])) return i;
         }
-        return -1;
+        return NOT_FOUND;
     } //find the album index, or return NOT_FOUND
 
-    private void grow() {
-        // last four albums may be void
+    /**
+     * This method increases the size of the albums array by 4
+     */
+    private void grow()
+    {
         Album[] albumsCopy = new Album[numAlbums + 4];
-        for (int i = 0; i < numAlbums; i++) {
-            albumsCopy[i].title = albums[i].title;
-            albumsCopy[i].artist = albums[i].artist;
-            albumsCopy[i].Genre = albums[i].Genre;
-            albumsCopy[i].Date = albums[i].Date;
-            albumsCopy[i].isAvailable = albums[i].isAvailable;
+        for (int i = 0; i < numAlbums; i++)
+        {
+            albumsCopy[i].setTitle(albums[i].getTitle());
+            albumsCopy[i].setArtist(albums[i].getArtist());
+            albumsCopy[i].setGenre(albums[i].getGenre());
+            albumsCopy[i].setDate(albums[i].getDate());
+            albumsCopy[i].setIsAvailable(albums[i].getIsAvailable());
         }
-        albums = new Album[numAlbums + 4];
-        numAlbums += 4;
         albums = albumsCopy;
     } //increase the capacity of the array list by 4
 
-    public boolean add(Album album) {
-        if (numAlbums == albums.size()) {
-            grow();
+    /**
+     * This method adds a given, valid Album object to the albums array if it does not already exist
+     * @param album an Album object
+     * @return true if added, false otherwise
+     */
+    public boolean add(Album album)
+    {
+        if (numAlbums == albums.length) grow();
+        if (find(album) == NOT_FOUND)
+        {
+            //only want to add the album to the collection if it has a valid date
+            if (album.getDate().isValid())
+            {
+                //if genre is not in Genre, make it unknown?
+
+                albums[numAlbums] = album;
+                numAlbums++;
+            }
+            else return false;
         }
-        albums[numAlbums] = album;
-        numAlbums++;
+        else return false;
+        return true;
     }
 
-    public boolean remove(Album album) {
-        int i = 0;
-        while (i < numAlbums) {
-            if (albums[i].title.equals(album.title) && albums[i].artist.equals(album.artist)) {
-                int j = i + 1;
-                while (j < numAlbums - 1) {
-                    albums[i] = albums[j];
-                    j++;
+    /**
+     * This method removes a given Album object from the albums array if it exists in the albums array
+     * @param album an Album object
+     * @return true if removed, false otherwise
+     */
+    public boolean remove(Album album)
+    {
+        if (find(album) != NOT_FOUND)
+        {
+            for (int i = 0; i< numAlbums; i++)
+            {
+                if (album.equals(albums[i]))
+                {
+                    for (int j = i; i < numAlbums; j++)
+                    {
+                        albums[j] = albums[j+1];
+                    }
+                    albums[numAlbums - 1] = null;
+                    numAlbums--;
+                    break;
                 }
-                albums[numAlbums] = null;
-                numAlbums--;
-                return true;
             }
-            i++;
         }
-        System.out.println();
-        return false;
+        else return false; //return false, i.e. not removed, if album is not found
+        return true;
     }
 
-    public boolean lendingOut(Album album) {
-        int i = 0;
-        while (i < numAlbums) {
-            if (albums[i].title.equals(album.title) && albums[i].artist.equals(album.artist)) {
-                albums[i].isAvailable = false;
-                return true;
+    /**
+     * This method sets the isAvailable boolean attribute to false
+     * @param album an Album object
+     * @return true if the isAvailable attribute is set to false, false otherwise
+     */
+    public boolean lendingOut(Album album)
+    {
+        if (find(album) != NOT_FOUND)
+        {
+            for (int i = 0; i < numAlbums; i++)
+            {
+                if (album.equals(albums[i]))
+                {
+                    albums[i].setIsAvailable(false);
+                }
             }
-            i++;
         }
-        System.out.println();
-        return false;
+        else return false;
+        return true;
     } //set to not available
 
-    public boolean returnAlbum(Album album) {
-        int i = 0;
-        while (i < numAlbums) {
-            if (albums[i].title.equals(album.title) && albums[i].artist.equals(album.artist)) {
-                albums[i].isAvailable = true;
-                return true;
+    /**
+     * This method sets the isAvailable boolean attribute to true
+     * @param album an Album object
+     * @return true if the isAvailable attribute is set to true, false otherwise
+     */
+    public boolean returnAlbum(Album album)
+    {
+        if (find(album) != NOT_FOUND)
+        {
+            for (int i = 0; i < numAlbums; i++)
+            {
+                if (album.equals(albums[i]))
+                {
+                    albums[i].setIsAvailable(true);
+                }
             }
-            i++;
         }
-        System.out.println();
-        return false;
+        else return false;
+        return true;
     } //set to available
 
-    public void print() {
-        System.out.println("*List of albums in the collection");
-        for (int i = 0; i < numAlbums; i++) {
-            System.out.println(albums[i].toString());
+    /**
+     * This method prints out all Album objects in the albums array
+     */
+    public void print()
+    {
+        for (int i = 0; i < numAlbums; i++)
+        {
+            
         }
-        System.out.println("");
     } //display the list without specifying the order
 
-    public void printByReleaseDate() {
-        System.out.println("*List of albums in the collection");
-        for (int i = 0; i < numAlbums; i++)
-        {
+    /**
+     * This method prints out all Album objects in the albums array by increasing release date
+     */
+    public void printByReleaseDate() {}
 
-        }
-    }
+    /**
+     * This method prints out all Album objects in the albums array by genre
+     */
+    public void printByGenre() {}
 
-    public Album[] organizeGenre(Album[] genreAlbum)
+    /**
+     * Testbed main for Collection class
+     * @param args
+     */
+    public static void main (String[] args)
     {
-        int i = 0;
-        for (int j = 0; j < numAlbums; j++)
-        {
-            if (albums[j].Genre.equals("classical"))
-            {
-                genreAlbum[i] = albums[j];
-                i++;
-            }
-        }
-        for (int k = 0; k < numAlbums; k++)
-        {
-            if (albums[k].Genre.equals("country"))
-            {
-                genreAlbum[i] = albums[k];
-                i++;
-            }
-        }
-        for (int l = 0; l < numAlbums; l++)
-        {
-            if (albums[l].Genre.equals("jazz"))
-            {
-                genreAlbum[i] = albums[l];
-                i++;
-            }
-        }
-        for (int m = 0; m < numAlbums; m++)
-        {
-            if (albums[m].Genre.equals("pop"))
-            {
-                genreAlbum[i] = albums[m];
-                i++;
-            }
-        }
-        for (int n = 0; n < numAlbums; n++)
-        {
-            if (albums[n].Genre.equals("unknown"))
-            {
-                genreAlbum[i] = albums[n];
-                i++;
-            }
-        }
-        return genreAlbum;
-    }
-
-    public void printByGenre() {
-        Album[] genreAlbum = new Album[numAlbums];
-        genreAlbum = organizeGenre(genreAlbum);
-        for (int i = 0; i < numAlbums; i++)
-        {
-            System.out.println(genreAlbum[i].toString());
-        }
-        System.out.println("*List of albums in the collection");
+        Collection c = new Collection();
     }
 }

@@ -1,4 +1,4 @@
-//package albums;
+package albums;
 
 /**
  * This defines the enum Genre

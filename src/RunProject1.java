@@ -1,4 +1,4 @@
-//package albums;
+package albums;
 
 public class RunProject1
 {
