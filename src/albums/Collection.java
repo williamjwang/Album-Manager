@@ -216,27 +216,22 @@ public class Collection
         {
             System.out.println("The collection is empty!");
         }
-        Album[] dateAlbum = albums;
-        for (int i = 0; i < numAlbums - 1; i++)
-        {
-            // find the earliest date in an unsorted array of dates
-            int min_date_index = i;
-            for (int j = i + 1; j < numAlbums; j++)
-            {
-                if (dateAlbum[j].getDate().compareTo(dateAlbum[min_date_index].getDate()) == -1)
-                {
-                    min_date_index = j;
+        else {
+            Album[] dateAlbum = albums;
+            for (int i = 0; i < numAlbums - 1; i++) {
+                int min_date_index = i;
+                for (int j = i + 1; j < numAlbums; j++) {
+                    if (dateAlbum[j].getDate().compareTo(dateAlbum[min_date_index].getDate()) == -1) {
+                        min_date_index = j;
+                    }
                 }
+                Album temp = dateAlbum[min_date_index];
+                dateAlbum[min_date_index] = dateAlbum[i];
+                dateAlbum[i] = temp;
             }
-            // swap the earliest date with the first date
-            Album temp = dateAlbum[min_date_index];
-            dateAlbum[min_date_index] = dateAlbum[i];
-            dateAlbum[i] = temp;
-        }
-
-        for (int k = 0; k < numAlbums; k++)
-        {
-            System.out.println(dateAlbum[k].toString());
+            for (int k = 0; k < numAlbums; k++) {
+                System.out.println(dateAlbum[k].toString());
+            }
         }
     }
 
