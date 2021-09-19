@@ -120,6 +120,21 @@ public class Album
     }
 
     /**
+     * This method returns an Album object initialiazed with given parameters
+     * @param title A String title of the Album object
+     * @param artist A String artist of the Album object
+     */
+    public Album(String title, String artist)
+    {
+        this.title = title;
+        this.artist = artist;
+        this.genre = Genre.Unknown;
+        this.releaseDate = new Date();
+        this.isAvailable = true;
+    }
+
+
+    /**
      * This method returns an Album object initialized with given parameters
      * @param title a String title of the Album object
      * @param artist a String artist of the Album object

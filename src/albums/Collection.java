@@ -21,7 +21,7 @@ public class Collection
     private Album[] albums;
     private int numAlbums; //number of albums currently in the collection
 
-    private static final int NOT_FOUND = 0;
+    private static final int NOT_FOUND = -1;
 
     /**
      * This method returns the albums array of the Collection object
@@ -201,27 +201,70 @@ public class Collection
      */
     public void print()
     {
-        for (int i = 0; i < numAlbums; i++)
+        if (numAlbums == 0) System.out.println("The collection is empty!");
+        else
         {
-            
+            System.out.println("*List of albums in the collection.");
+            for (int i = 0; i < numAlbums; i++)
+            {
+                System.out.println(albums[i].toString());
+            }
+            System.out.println("*End of list.");
         }
+
     } //display the list without specifying the order
 
     /**
-     * This method prints out all Album objects in the albums array by increasing release date through selection sort
+     * This method prints out all Album objects in the albums array by increasing release date
      */
     public void printByReleaseDate()
     {
-        if (numAlbums == 0)
+//        Album[] albumsCopy = new Album[numAlbums];
+//        for (int i = 0; i < numAlbums; i++)
+//        {
+//            albumsCopy[i].setTitle(albums[i].getTitle());
+//            albumsCopy[i].setArtist(albums[i].getArtist());
+//            albumsCopy[i].setGenre(albums[i].getGenre());
+//            albumsCopy[i].setDate(albums[i].getDate());
+//            albumsCopy[i].setIsAvailable(albums[i].getIsAvailable());
+//        }
+//        Album temp =  albumsCopy[0];
+//        int AFTER = 1;
+//        for (int i = 0; i < albumsCopy.length; i++)
+//        {
+//            if (temp.getDate().compareTo(albumsCopy[i].getDate()) == AFTER)
+//            {
+//                temp = albumsCopy[i];
+//            }
+//            System.out.println(temp.toString());
+//
+//            for (int j = 0; j< numAlbums; j++)
+//            {
+//                if (temp.equals(albumsCopy[i]))
+//                {
+//                    for (int k = j; k < numAlbums; k++)
+//                    {
+//                        albumsCopy[k] = albumsCopy[k+1];
+//                    }
+//                    albumsCopy[numAlbums - 1] = null;
+//                    numAlbums--;
+//                    break;
+//                }
+//            }
+//        }
+        int BEFORE = -1;
+        if (numAlbums == 0) System.out.println("The collection is empty!");
+        else
         {
-            System.out.println("The collection is empty!");
-        }
-        else {
+            System.out.println("*Album collection by the release dates.");
             Album[] dateAlbum = albums;
-            for (int i = 0; i < numAlbums - 1; i++) {
+            for (int i = 0; i < numAlbums - 1; i++)
+            {
                 int min_date_index = i;
-                for (int j = i + 1; j < numAlbums; j++) {
-                    if (dateAlbum[j].getDate().compareTo(dateAlbum[min_date_index].getDate()) == -1) {
+                for (int j = i + 1; j < numAlbums; j++)
+                {
+                    if (dateAlbum[j].getDate().compareTo(dateAlbum[min_date_index].getDate()) == BEFORE)
+                    {
                         min_date_index = j;
                     }
                 }
@@ -229,16 +272,63 @@ public class Collection
                 dateAlbum[min_date_index] = dateAlbum[i];
                 dateAlbum[i] = temp;
             }
-            for (int k = 0; k < numAlbums; k++) {
-                System.out.println(dateAlbum[k].toString());
-            }
+            for (int k = 0; k < numAlbums; k++) System.out.println(dateAlbum[k].toString());
+            System.out.println("*End of list.");
         }
     }
 
     /**
      * This method prints out all Album objects in the albums array by genre
      */
-    public void printByGenre() {}
+    public void printByGenre()
+    {
+        if (numAlbums == 0) System.out.println("The collection is empty!");
+        else
+        {
+            System.out.println("*Album collection by genre.");
+            //print all Classical albums in albums array
+            for (int i = 0; i < numAlbums; i++)
+            {
+                if (albums[i].getGenre().toString().equals(Genre.Classical.toString()))
+                {
+                    System.out.println(albums[i].toString());
+                }
+            }
+            //print all Country albums in albums array
+            for (int i = 0; i < numAlbums; i++)
+            {
+                if (albums[i].getGenre().toString().equals(Genre.Country.toString()))
+                {
+                    System.out.println(albums[i].toString());
+                }
+            }
+            //print all Jazz albums in albums array
+            for (int i = 0; i < numAlbums; i++)
+            {
+                if (albums[i].getGenre().toString().equals(Genre.Jazz.toString()))
+                {
+                    System.out.println(albums[i].toString());
+                }
+            }
+            //print all Pop albums in albums array
+            for (int i = 0; i < numAlbums; i++)
+            {
+                if (albums[i].getGenre().toString().equals(Genre.Pop.toString()))
+                {
+                    System.out.println(albums[i].toString());
+                }
+            }
+            //print all Unknown albums in albums array
+            for (int i = 0; i < numAlbums; i++)
+            {
+                if (albums[i].getGenre().toString().equals(Genre.Unknown.toString()))
+                {
+                    System.out.println(albums[i].toString());
+                }
+            }
+            System.out.println("*End of list.");
+        }
+    }
 
     /**
      * Testbed main for Collection class
@@ -247,5 +337,35 @@ public class Collection
     public static void main (String[] args)
     {
         Collection c = new Collection();
+//        Album a1 = new Album();
+//        c.add(a1);
+//        c.print();
+//        Date d1 = new Date();
+//        Album a2 = new Album("Resonance", "Home", Genre.Jazz, d1, true);
+//        c.add(a2);
+//        c.print();
+//        c.printByGenre();
+
+        Date D1 = new Date("7/9/2000");
+        Album b1 = new Album("apples", "johnny appleseed", Genre.Pop, D1, true);
+
+        Date D2 = new Date("8/6/1995");
+        Album b2 = new Album("oranges", "johnny orangeseed", Genre.Classical, D2, true);
+
+        Date D3 = new Date("12/15/1997");
+        Album b3 = new Album("lemons", "johnny lemonseed", Genre.Unknown, D3, true);
+
+        c.add(b1);
+        c.add(b2);
+        c.add(b3);
+
+//        System.out.println("Print:"); //D1 D2 D3
+//        c.print();
+//
+//        System.out.println("Print by Genre:"); //D2 D1 D3
+//        c.printByGenre();
+
+        System.out.println("Print by Release Date:"); //D2 D3 D1
+        c.printByReleaseDate();
     }
 }
