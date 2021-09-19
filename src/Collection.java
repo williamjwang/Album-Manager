@@ -1,3 +1,5 @@
+//package albums;
+
 public class Collection {
     private Album[] albums;
     private int numAlbums; //number of albums currently in the collection
