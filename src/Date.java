@@ -1,35 +1,17 @@
-//package albums;
+package albums;
 import java.util.Calendar;
 
 /**
  * This class defines the Date abstract data type with year, month and day.
- * ...
+ *
  * There are two methods in this class: isValid() and compareTo():
  * The isValid() method checks whether a given date is valid
  * The compareTo() method is an overridden method which compares two Date objects.
- * ...
+ *
  * @author William Wang, Joshua Sze
  */
 public class Date implements Comparable<Date>
 {
-    public static final int QUADRENNIAL = 4;
-    public static final int CENTENNIAL = 100;
-    public static final int QUARTERCENTENNIAL = 400;
-    public static final int THE_EIGHTYS = 1980;
-
-    public static final int Jan = 1;
-    public static final int Feb = 2;
-    public static final int Mar = 3;
-    public static final int Apr = 4;
-    public static final int May = 5;
-    public static final int Jun = 6;
-    public static final int Jul = 7;
-    public static final int Aug = 8;
-    public static final int Sep = 9;
-    public static final int Oct = 10;
-    public static final int Nov = 11;
-    public static final int Dec = 12;
-
     private int year;
     private int month;
     private int day;
@@ -69,8 +51,7 @@ public class Date implements Comparable<Date>
         this.month = Integer.parseInt(dateCopy[0]);
         this.day = Integer.parseInt(dateCopy[1]);
         this.year = Integer.parseInt(dateCopy[2]);
-    } //take “mm/dd/yyyy” and create a Date object
-
+    }
 
     /**
      * This method returns a Date object with today's date
@@ -91,8 +72,12 @@ public class Date implements Comparable<Date>
      * @param year an int yyyy
      * @return true if the input year is a leap year
      */
-    public static boolean isLeapYear(int year)
+    private static boolean isLeapYear(int year)
     {
+        final int QUADRENNIAL = 4;
+        final int CENTENNIAL = 100;
+        final int QUARTERCENTENNIAL = 400;
+
         if (year % QUADRENNIAL == 0)
         {
             if (year % CENTENNIAL == 0)
@@ -115,8 +100,21 @@ public class Date implements Comparable<Date>
      * @param day an integer dd
      * @return true if the date is valid for the given month mm and year yyyy
      */
-    public static boolean isValidDay(int year, int month, int day)
+    private static boolean isValidDay(int year, int month, int day)
     {
+        final int Jan = 1;
+        final int Feb = 2;
+        final int Mar = 3;
+        final int Apr = 4;
+        final int May = 5;
+        final int Jun = 6;
+        final int Jul = 7;
+        final int Aug = 8;
+        final int Sep = 9;
+        final int Oct = 10;
+        final int Nov = 11;
+        final int Dec = 12;
+
         //No months of the year have more than 31 days
         int maxDay = 31;
         //No months of the year have 0 or fewer days
@@ -153,8 +151,10 @@ public class Date implements Comparable<Date>
      */
     public boolean isValid()
     {
-        System.out.print(month + " " + day + " " + year);
-        if (year < THE_EIGHTYS) { System.out.println("returned false 1"); return false; }
+        final int THE_EIGHTYS = 1980;
+
+        // System.out.print(month + " " + day + " " + year);
+        if (year < THE_EIGHTYS) { return false; }
 
         //Check if date is after today's date
         Calendar today = Calendar.getInstance();
@@ -183,6 +183,7 @@ public class Date implements Comparable<Date>
 //            System.out.println("returned false 5");
             return false;
         }
+        if (month < 1 || month > 12) return false;
         return true;
     }
 
