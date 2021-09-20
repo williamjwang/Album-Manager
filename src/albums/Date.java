@@ -154,7 +154,7 @@ public class Date implements Comparable<Date>
         final int THE_EIGHTYS = 1980;
 
         // System.out.print(month + " " + day + " " + year);
-        if (year < THE_EIGHTYS) { System.out.println("returned false 1"); return false; }
+        if (year < THE_EIGHTYS) { return false; }
 
         //Check if date is after today's date
         Calendar today = Calendar.getInstance();

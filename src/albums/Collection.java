@@ -91,9 +91,10 @@ public class Collection
      */
     private void grow()
     {
-        Album[] albumsCopy = new Album[numAlbums + 4];
+        Album[] albumsCopy = new Album[albums.length + 4];
         for (int i = 0; i < numAlbums; i++)
         {
+            albumsCopy[i] = new Album();
             albumsCopy[i].setTitle(albums[i].getTitle());
             albumsCopy[i].setArtist(albums[i].getArtist());
             albumsCopy[i].setGenre(albums[i].getGenre());
@@ -140,7 +141,7 @@ public class Collection
             {
                 if (album.equals(albums[i]))
                 {
-                    for (int j = i; i < numAlbums; j++)
+                    for (int j = i; j < numAlbums - 1; j++)
                     {
                         albums[j] = albums[j+1];
                     }
@@ -289,7 +290,7 @@ public class Collection
             //print all Classical albums in albums array
             for (int i = 0; i < numAlbums; i++)
             {
-                if (albums[i].getGenre().toString().equals(Genre.Classical.toString()))
+                if (albums[i].getGenre().toString().equals(Genre.classical.toString()))
                 {
                     System.out.println(albums[i].toString());
                 }
@@ -297,7 +298,7 @@ public class Collection
             //print all Country albums in albums array
             for (int i = 0; i < numAlbums; i++)
             {
-                if (albums[i].getGenre().toString().equals(Genre.Country.toString()))
+                if (albums[i].getGenre().toString().equals(Genre.country.toString()))
                 {
                     System.out.println(albums[i].toString());
                 }
@@ -305,7 +306,7 @@ public class Collection
             //print all Jazz albums in albums array
             for (int i = 0; i < numAlbums; i++)
             {
-                if (albums[i].getGenre().toString().equals(Genre.Jazz.toString()))
+                if (albums[i].getGenre().toString().equals(Genre.jazz.toString()))
                 {
                     System.out.println(albums[i].toString());
                 }
@@ -313,7 +314,7 @@ public class Collection
             //print all Pop albums in albums array
             for (int i = 0; i < numAlbums; i++)
             {
-                if (albums[i].getGenre().toString().equals(Genre.Pop.toString()))
+                if (albums[i].getGenre().toString().equals(Genre.pop.toString()))
                 {
                     System.out.println(albums[i].toString());
                 }
@@ -321,7 +322,7 @@ public class Collection
             //print all Unknown albums in albums array
             for (int i = 0; i < numAlbums; i++)
             {
-                if (albums[i].getGenre().toString().equals(Genre.Unknown.toString()))
+                if (albums[i].getGenre().toString().equals(Genre.unknown.toString()))
                 {
                     System.out.println(albums[i].toString());
                 }
@@ -347,13 +348,13 @@ public class Collection
 //        c.printByGenre();
 
         Date D1 = new Date("7/9/2000");
-        Album b1 = new Album("apples", "johnny appleseed", Genre.Pop, D1, true);
+        Album b1 = new Album("apples", "johnny appleseed", Genre.pop, D1, true);
 
         Date D2 = new Date("8/6/1995");
-        Album b2 = new Album("oranges", "johnny orangeseed", Genre.Classical, D2, true);
+        Album b2 = new Album("oranges", "johnny orangeseed", Genre.classical, D2, true);
 
         Date D3 = new Date("12/15/1997");
-        Album b3 = new Album("lemons", "johnny lemonseed", Genre.Unknown, D3, true);
+        Album b3 = new Album("lemons", "johnny lemonseed", Genre.unknown, D3, true);
 
         c.add(b1);
         c.add(b2);
