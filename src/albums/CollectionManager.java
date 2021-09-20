@@ -26,7 +26,12 @@ public class CollectionManager
             {
                 String title = st.nextToken();
                 String artist = st.nextToken();
-                Genre genre = Genre.valueOf(st.nextToken());
+                String genreType = st.nextToken();
+                if (!(genreType.equals("classical") || genreType.equals("country") || genreType.equals("jazz") || genreType.equals("pop")))
+                {
+                    genreType = "unknown";
+                }
+                Genre genre = Genre.valueOf(genreType);
                 Date date = new Date(st.nextToken());
                 boolean isAvailable = true;
                 Album temp = new Album(title, artist, genre, date, isAvailable);
