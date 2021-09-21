@@ -10,9 +10,14 @@ import java.util.Scanner;
  */
 public class CollectionManager
 {
+    private static String firstToUpperCase(String input)
+    {
+        return Character.toUpperCase(input.charAt(0)) + "" + input.substring(1);
+    }
     private static final int NOT_FOUND = 0;
     public void run()
     {
+        System.out.println("Collection Manager starts running.");
         Scanner s = new Scanner(System.in);
         String inputLine = s.nextLine();
 
@@ -26,17 +31,17 @@ public class CollectionManager
             {
                 String title = st.nextToken();
                 String artist = st.nextToken();
-                String genreType = st.nextToken();
-                if (!(genreType.equals("classical") || genreType.equals("country") || genreType.equals("jazz") || genreType.equals("pop")))
+                String genreType = firstToUpperCase(st.nextToken());
+                if (!(genreType.equals("Classical") || genreType.equals("Country") || genreType.equals("Jazz") || genreType.equals("Pop")))
                 {
-                    genreType = "unknown";
+                    genreType = "Unknown";
                 }
                 Genre genre = Genre.valueOf(genreType);
                 Date date = new Date(st.nextToken());
                 boolean isAvailable = true;
                 Album temp = new Album(title, artist, genre, date, isAvailable);
                 if (!date.isValid()) System.out.println("Invalid date!");
-                else if (c.add(temp)) System.out.println(temp.toString() + " >> added");
+                else if (c.add(temp)) System.out.println(temp.toString() + " >> added.");
                 else System.out.println(temp.toString() + " >> is already in the collection.");
 
             }
