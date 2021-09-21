@@ -114,7 +114,7 @@ public class Album
     {
         this.title = "UNKNOWN TITLE";
         this.artist = "UNKNOWN ARTIST";
-        this.genre = Genre.unknown;
+        this.genre = Genre.Unknown;
         this.releaseDate = new Date();
         this.isAvailable = true;
     }
@@ -128,7 +128,7 @@ public class Album
     {
         this.title = title;
         this.artist = artist;
-        this.genre = Genre.unknown;
+        this.genre = Genre.Unknown;
         this.releaseDate = new Date();
         this.isAvailable = true;
     }
@@ -181,8 +181,7 @@ public class Album
         int albumReleaseMonth = releaseDate.getMonth();
         int albumReleaseDay = releaseDate.getDay();
         int albumReleaseYear = releaseDate.getYear();
-        String date = String.valueOf(albumReleaseMonth) + "/" + String.valueOf(albumReleaseDay) + "/" +
-                String.valueOf(albumReleaseYear);
+        String date = albumReleaseMonth + "/" + albumReleaseDay + "/" + albumReleaseYear;
 
         String avail;
         if (isAvailable) avail = "is available";
@@ -190,7 +189,6 @@ public class Album
 
         String splitColons = "::";
 
-        //genre.name()
         return title + splitColons + artist + splitColons + genre.toString() + splitColons + date + splitColons + avail;
     }
 
@@ -203,13 +201,13 @@ public class Album
         System.out.println(a1.toString());
 
         Date d1 = new Date();
-        Album a2 = new Album("Resonance", "Home", Genre.jazz, d1, true);
+        Album a2 = new Album("Resonance", "Home", Genre.Jazz, d1, true);
         System.out.println(a2.toString());
 
         if (a1.equals(a2)) System.out.println("a1 = a2");
         else System.out.println("a1 != a2");
 
-        Album a3 = new Album("Resonance", "Home", Genre.unknown, d1, false);
+        Album a3 = new Album("Resonance", "Home", Genre.Unknown, d1, false);
         if (a2.equals(a3)) System.out.println("a2 = a3");
         else System.out.println("a2 != a3");
 
