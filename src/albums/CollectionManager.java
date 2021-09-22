@@ -7,6 +7,8 @@ import java.util.Scanner;
  * ...
  * There is one method in this class: run()
  * The run() method simulates a Collection object and
+ *
+ * @author William Wang, Joshua Sze
  */
 public class CollectionManager
 {
