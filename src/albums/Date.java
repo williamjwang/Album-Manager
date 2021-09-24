@@ -213,25 +213,89 @@ public class Date implements Comparable<Date>
      */
     public static void main(String[] args)
     {
-        Date d1 = new Date("8/5/2021");
-        System.out.println(String.valueOf(d1.month));
-        System.out.println(String.valueOf(d1.day));
-        System.out.println(String.valueOf(d1.year));
-        if (d1.isValid() == true) System.out.println("d1 is a valid date!\n");
-        else System.out.println("d1 is an invalid date\n");
+        // Test case 1 - The method shall not accept any date with the year before 1980
+        Date d1 = new Date("2/19/1965"); // accounted
+        if (d1.isValid()) System.out.println("d1 is valid\n");
+        else System.out.println("d1 is invalid\n");
 
-        Date d2 = new Date();
-        System.out.println(String.valueOf(d2.month));
-        System.out.println(String.valueOf(d2.day));
-        System.out.println(String.valueOf(d2.year));
-        System.out.print("\n");
-        System.out.println(String.valueOf(d1.compareTo(d2)));
+        // Test case 2 - The method shall not accept any date with the year after current year
+        Date d2 = new Date("2/19/2030"); // accounted
+        if (d2.isValid()) System.out.println("d2 is valid\n");
+        else System.out.println("d2 is invalid\n");
 
-        Date d3 = new Date("2/29/2020");
-        Date d4 = new Date("2/29/2021");
-        if (d3.isValid()) System.out.println("d3 is valid");
-        else System.out.println("d3 is invalid");
-        if (d4.isValid()) System.out.println("d4 is valid");
-        else System.out.println("d4 is invalid");
+        // Test case 3 - Number of days in February for a non-leap year shall be 28
+        Date d3 = new Date("2/29/2021");
+        if (d3.isValid()) System.out.println("d3 is valid\n");
+        else System.out.println("d3 is invalid\n");
+
+        // Test case 4 - Number of days in February for a leap year shall be 29
+        Date d4 = new Date("2/29/2020");
+        if (d4.isValid()) System.out.println("d4 is valid\n");
+        else System.out.println("d4 is invalid\n");
+
+        // Test case 5 - Valid range for the month shall be 1-12
+        Date d5 = new Date("0/19/2020"); // accounted
+        if (d5.isValid()) System.out.println("d5 is valid\n");
+        else System.out.println("d5 is invalid\n");
+
+        // Test case 6 - Valid range for the month shall be 1-12
+        Date d6 = new Date("13/19/2020"); // accounted
+        if (d6.isValid()) System.out.println("d6 is valid\n");
+        else System.out.println("d6 is invalid\n");
+
+        // Test case 7 - Valid range for days in 30-day months shall be 1-30
+        Date d7 = new Date("4/31/2020"); // accounted
+        if (d7.isValid()) System.out.println("d7 is valid\n");
+        else System.out.println("d7 is invalid\n");
+
+        // Test case 8 - Valid range for any day shall be 1-(28, 29, 30, 31 depending on month)
+        Date d8 = new Date("4/0/2020"); // accounted
+        if (d8.isValid()) System.out.println("d8 is valid\n");
+        else System.out.println("d8 is invalid\n");
+
+        // Test case 9 - Valid range for days in February shall be 1-(28-29 depending on leap year)
+        Date d9 = new Date("2/30/2020"); // accounted y
+        if (d9.isValid()) System.out.println("d9 is valid\n");
+        else System.out.println("d9 is invalid\n");
+
+        // Test case 10 - Valid range for days in 31-day months shall be 1-31
+        Date d10 = new Date("1/32/2020"); // accounted y
+        if (d10.isValid()) System.out.println("d10 is valid\n");
+        else System.out.println("d10 is invalid\n");
+
+        // Test case 11 - Date with invalid values in day and month
+        Date d11 = new Date("13/32/2020"); // accounted y
+        if (d11.isValid()) System.out.println("d11 is valid\n");
+        else System.out.println("d11 is invalid\n");
+
+        // Test case 12 - Date with invalid values in month and year
+        Date d12 = new Date("13/19/2030"); // accounted y
+        if (d12.isValid()) System.out.println("d12 is valid\n");
+        else System.out.println("d12 is invalid\n");
+
+        // Test case 13 - Date with invalid values in day and year
+        Date d13 = new Date("5/32/2030"); // accounted y
+        if (d13.isValid()) System.out.println("d13 is valid\n");
+        else System.out.println("d13 is invalid\n");
+
+        // Test case 14 - Date with invalid values in day, month, and year
+        Date d14 = new Date("314/159/265"); // accounted y
+        if (d14.isValid()) System.out.println("d14 is valid\n");
+        else System.out.println("d14 is invalid\n");
+
+        // Test case 15 - Valid day
+        Date d15 = new Date("8/5/2021");
+        if (d15.isValid() == true) System.out.println("d15 is valid\n");
+        else System.out.println("d15 is invalid\n");
+
+        // Test case 16 - Valid day
+        Date d16 = new Date("2/19/2001"); // accounted y
+        if (d16.isValid()) System.out.println("d16 is valid\n");
+        else System.out.println("d16 is invalid\n");
+
+        // Test case 17 - Valid date with no date inputted (assumes today’s date)
+        Date d17 = new Date();
+        if (d17.isValid() == true) System.out.println("d17 is valid\n");
+        else System.out.println("d17 is invalid\n");
     }
 }
