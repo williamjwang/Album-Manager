@@ -3,11 +3,6 @@ import java.util.Calendar;
 
 /**
  * This class defines the Date abstract data type with year, month and day.
- *
- * There are two methods in this class: isValid() and compareTo():
- * The isValid() method checks whether a given date is valid
- * The compareTo() method is an overridden method which compares two Date objects.
- *
  * @author William Wang, Joshua Sze
  */
 public class Date implements Comparable<Date>
@@ -17,7 +12,7 @@ public class Date implements Comparable<Date>
     private int day;
 
     /**
-     * This method returns the year of the Date object
+     * This method returns the year of the Date object.
      * @return year of the Date object
      */
     public int getYear()
@@ -25,7 +20,7 @@ public class Date implements Comparable<Date>
         return year;
     }
     /**
-     * This method returns the month of the Date object
+     * This method returns the month of the Date object.
      * @return month of the Date object
      */
     public int getMonth()
@@ -33,7 +28,7 @@ public class Date implements Comparable<Date>
         return month;
     }
     /**
-     * This method returns the day of the Date object
+     * This method returns the day of the Date object.
      * @return day of the Date object
      */
     public int getDay()
@@ -42,7 +37,7 @@ public class Date implements Comparable<Date>
     }
 
     /**
-     * This method returns a Date object
+     * This method takes a String "mm/dd/yyyy" and returns a Date object.
      * @param date a String "mm/dd/yyyy"
      */
     public Date(String date)
@@ -54,7 +49,7 @@ public class Date implements Comparable<Date>
     }
 
     /**
-     * This method returns a Date object with today's date
+     * This method returns a Date object with today's date.
      */
     public Date()
     {
@@ -68,7 +63,7 @@ public class Date implements Comparable<Date>
     } //create an object with today’s date (see Calendar class)
 
     /**
-     * This method checks whether a given year is a leap year
+     * This method checks whether a given year is a leap year.
      * @param year an int yyyy
      * @return true if the input year is a leap year
      */
@@ -82,10 +77,7 @@ public class Date implements Comparable<Date>
         {
             if (year % CENTENNIAL == 0)
             {
-                if (year % QUARTERCENTENNIAL == 0)
-                {
-                    return true;
-                }
+                if (year % QUARTERCENTENNIAL == 0) return true;
                 else return false;
             }
             else return true;
@@ -94,7 +86,7 @@ public class Date implements Comparable<Date>
     }
 
     /**
-     * This method checks whether the day is invalid for the given month and year
+     * This method checks whether the day is invalid for the given month and year.
      * @param year an integer yyyy
      * @param month an integer mm
      * @param day an integer dd
@@ -146,14 +138,12 @@ public class Date implements Comparable<Date>
 
     /**
      * This method checks whether a given date is valid.
-     *
      * @return true if the given date is valid
      */
     public boolean isValid()
     {
         final int THE_EIGHTYS = 1980;
 
-        // System.out.print(month + " " + day + " " + year);
         if (year < THE_EIGHTYS) { return false; }
 
         //Check if date is after today's date
@@ -161,26 +151,22 @@ public class Date implements Comparable<Date>
 
         if (year > today.get(Calendar.YEAR))
         {
-//            System.out.println("returned false 2");
             return false;
         }
         if ((year == today.get(Calendar.YEAR)) && (month > today.get(Calendar.MONTH) + 1))
         {
-//            System.out.println("returned false 3");
             return false;
         }
         if ((year == today.get(Calendar.YEAR))
                 && (month == today.get(Calendar.MONTH) + 1)
                     && (day > today.get(Calendar.DAY_OF_MONTH)))
         {
-//            System.out.println("returned false 4");
             return false;
         }
 
         //Check if the date is valid for the given year and month
         if (isValidDay(year, month, day) == false)
         {
-//            System.out.println("returned false 5");
             return false;
         }
         if (month < 1 || month > 12) return false;
@@ -188,10 +174,9 @@ public class Date implements Comparable<Date>
     }
 
     /**
-     * This month compares two Date abstract data types
+     * This month compares two Date abstract data types.
      * @param date a Date object
-     * @return BEFORE, SAME_DATE, or AFTER if for date1.compareTo(date2), date1 occurs before date 2,
-     *      date 1 is the same as date 2, or date1 occurs after date 2, respectively
+     * @return BEFORE, SAME_DATE, or AFTER if for date1.compareTo(date2), date1 occurs before date 2, date 1 is the same as date 2, or date1 occurs after date 2, respectively
      */
     @Override
     public int compareTo(Date date)
@@ -217,7 +202,8 @@ public class Date implements Comparable<Date>
     }
 
     /**
-     * Testbed main for Data class
+     * Testbed main for Data class.
+     * @param args None used
      */
     public static void main(String[] args)
     {
