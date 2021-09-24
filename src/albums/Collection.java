@@ -1,19 +1,7 @@
 package albums;
 
 /**
- * This class defines the Collection data type
- *
- * There are nine methods in this class:
- * The find() method returns the index of the album in the albums array, or if it is not found
- * The grow() method increases the size of the albums array by 4
- * The add() method adds an album to the albums array
- * The remove() method removes an album from the albums array
- * The lendingOut() method sets the isAvailable boolean attribute of an album in the albums array to false if it exists
- * The returnAlbum() method sets the isAvailable boolean attribute of an album in the albums array to true if it exists
- * The print() method displays all albums in the albums array
- * The printByReleaseDate() method displays all albums in the albums array by increasing release date
- * The printByGenre() method displays all albums in the albums array by genre
- *
+ * This class defines the Collection data type.
  * @author William Wang, Joshua Sze
  */
 public class Collection
@@ -24,7 +12,7 @@ public class Collection
     private static final int NOT_FOUND = -1;
 
     /**
-     * This method returns a Collection object
+     * This method returns a Collection object.
      */
     public Collection()
     {
@@ -34,7 +22,7 @@ public class Collection
     }
 
     /**
-     * This method returns the index of a given Album object if it is in the albums array, and NOT_FOUND otherwise
+     * This method returns the index of a given Album object if it is in the albums array, and NOT_FOUND otherwise.
      * @param album An Album object
      * @return index of given Album object or NOT_FOUND
      */
@@ -48,7 +36,7 @@ public class Collection
     } //find the album index, or return NOT_FOUND
 
     /**
-     * This method increases the size of the albums array by 4
+     * This method increases the size of the albums array by 4.
      */
     private void grow()
     {
@@ -66,7 +54,7 @@ public class Collection
     } //increase the capacity of the array list by 4
 
     /**
-     * This method adds a given, valid Album object to the albums array if it does not already exist
+     * This method adds a given, valid Album object to the albums array if it does not already exist.
      * @param album an Album object
      * @return true if added, false otherwise
      */
@@ -88,7 +76,7 @@ public class Collection
     }
 
     /**
-     * This method removes a given Album object from the albums array if it exists in the albums array
+     * This method removes a given Album object from the albums array if it exists in the albums array.
      * @param album an Album object
      * @return true if removed, false otherwise
      */
@@ -115,7 +103,7 @@ public class Collection
     }
 
     /**
-     * This method sets the isAvailable boolean attribute to false
+     * This method sets the isAvailable boolean attribute to false if it is not already false.
      * @param album an Album object
      * @return true if the isAvailable attribute is set to false, false otherwise
      */
@@ -139,7 +127,7 @@ public class Collection
     } //set to not available
 
     /**
-     * This method sets the isAvailable boolean attribute to true
+     * This method sets the isAvailable boolean attribute to true if it is not already true.
      * @param album an Album object
      * @return true if the isAvailable attribute is set to true, false otherwise
      */
@@ -163,7 +151,7 @@ public class Collection
     } //set to available
 
     /**
-     * This method prints out all Album objects in the albums array
+     * This method prints out all Album objects in the albums array.
      */
     public void print()
     {
@@ -181,7 +169,7 @@ public class Collection
     } //display the list without specifying the order
 
     /**
-     * This method prints out all Album objects in the albums array by increasing release date
+     * This method prints out all Album objects in the albums array by increasing release date.
      */
     public void printByReleaseDate()
     {
@@ -221,7 +209,7 @@ public class Collection
     }
 
     /**
-     * This method prints out all Album objects in the albums array by genre
+     * This method prints out all Album objects in the albums array by genre.
      */
     public void printByGenre()
     {
@@ -271,43 +259,5 @@ public class Collection
             }
             System.out.println("*End of list.");
         }
-    }
-
-    /**
-     * Testbed main for Collection class
-     */
-    public static void main (String[] args)
-    {
-        Collection c = new Collection();
-//        Album a1 = new Album();
-//        c.add(a1);
-//        c.print();
-//        Date d1 = new Date();
-//        Album a2 = new Album("Resonance", "Home", Genre.Jazz, d1, true);
-//        c.add(a2);
-//        c.print();
-//        c.printByGenre();
-
-        Date D1 = new Date("7/9/2000");
-        Album b1 = new Album("apples", "johnny appleseed", Genre.Pop, D1, true);
-
-        Date D2 = new Date("8/6/1995");
-        Album b2 = new Album("oranges", "johnny orangeseed", Genre.Classical, D2, true);
-
-        Date D3 = new Date("12/15/1997");
-        Album b3 = new Album("lemons", "johnny lemonseed", Genre.Unknown, D3, true);
-
-        c.add(b1);
-        c.add(b2);
-        c.add(b3);
-
-//        System.out.println("Print:"); //D1 D2 D3
-//        c.print();
-//
-//        System.out.println("Print by Genre:"); //D2 D1 D3
-//        c.printByGenre();
-
-        System.out.println("Print by Release Date:"); //D2 D3 D1
-        c.printByReleaseDate();
     }
 }

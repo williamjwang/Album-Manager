@@ -3,16 +3,13 @@ import java.util.StringTokenizer;
 import java.util.Scanner;
 
 /**
- * This class defines the CollectionManager abstract data type
- * ...
- * There is one method in this class: run()
- * The run() method simulates a Collection object and its associated functionality
+ * This class defines the CollectionManager abstract data type.
  * @author William Wang
  */
 public class CollectionManager
 {
     /**
-     * This method takes a String and returns the String with the first letter capitalized
+     * This method takes a String and returns the String with the first letter capitalized.
      * @param input A String
      * @return A String with its first letter capitalized
      */
@@ -22,7 +19,7 @@ public class CollectionManager
     }
 
     /**
-     * This method implements the add() functionality for the Collection Manager
+     * This method implements the add() functionality for the Collection Manager.
      * @param st A StringTokenizer object
      * @param c A Collection object
      * @return A Collection object, with a new Album added to it through a given String inputLine tokenized
@@ -47,7 +44,7 @@ public class CollectionManager
     }
 
     /**
-     * This method implements the remove() functionality for the Collection Manager
+     * This method implements the remove() functionality for the Collection Manager.
      * @param st A StringTokenizer object
      * @param c A Collection object
      * @return A Collection object, with an Album deleted from it through a given String inputLine tokenized
@@ -63,7 +60,7 @@ public class CollectionManager
     }
 
     /**
-     * This method implements the lendingOut() functionality for the Collection Manager
+     * This method implements the lendingOut() functionality for the Collection Manager.
      * @param st A StringTokenizer object
      * @param c A Collection object
      * @return A Collection object, with an Album's isAvailable parameter set to false if it exists and is not already set to false
@@ -79,7 +76,7 @@ public class CollectionManager
     }
 
     /**
-     * This method implements the returnAlbum() functionality for the Collection Manager
+     * This method implements the returnAlbum() functionality for the Collection Manager.
      * @param st A StringTokenizer object
      * @param c A Collection object
      * @return A Collection object, with an Album's isAvailable parameter set to true if it exists and is not already set to true
@@ -95,7 +92,7 @@ public class CollectionManager
     }
 
     /**
-     * This method creates a Collection object and simulates the addition, removal, and other functionality of Album objects
+     * This method creates a Collection object and simulates the addition, removal, and other functionality of Album objects.
      */
     public void run()
     {

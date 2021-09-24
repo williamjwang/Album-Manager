@@ -2,11 +2,6 @@ package albums;
 
 /**
  * This class defines the Album abstract data type with title, artist, genre, releaseDate, and isAvailable.
- *
- * There are two methods in this class: equals() and toString():
- * The equals() method is an overridden method and compares two Album objects
- * The toString() method is an overridden method and returns a textual representation of a given Album object
- *
  * @author William Wang, Joshua Sze
  */
 public class Album
@@ -18,7 +13,7 @@ public class Album
     private boolean isAvailable;
 
     /**
-     * This method sets/changes the title of the Album object
+     * This method sets/changes the title of the Album object.
      * @param title a String representing the title of Album object being changed to
      */
     public void setTitle(String title)
@@ -27,7 +22,7 @@ public class Album
     }
 
     /**
-     * This method sets/changes the artist of the Album object
+     * This method sets/changes the artist of the Album object.
      * @param artist a String representing the artist of Album object being changed to
      */
     public void setArtist(String artist)
@@ -36,7 +31,7 @@ public class Album
     }
 
     /**
-     * This method sets/changes the genre of the Album object
+     * This method sets/changes the genre of the Album object.
      * @param genre a Genre representing the genre of Album object being changed to
      */
     public void setGenre(Genre genre)
@@ -45,7 +40,7 @@ public class Album
     }
 
     /**
-     * This method sets/changes the release date of the Album object
+     * This method sets/changes the release date of the Album object.
      * @param releaseDate a String representing the release date of Album object being changed to
      */
     public void setDate(Date releaseDate)
@@ -54,7 +49,7 @@ public class Album
     }
 
     /**
-     * This method sets/changes the availability of the Album object
+     * This method sets/changes the availability of the Album object.
      * @param isAvailable a boolean representing the availability of Album object being changed to
      */
     public void setIsAvailable(boolean isAvailable)
@@ -63,7 +58,7 @@ public class Album
     }
 
     /**
-     * This method returns the title of the Album object
+     * This method returns the title of the Album object.
      * @return a String title of the Album object
      */
     public String getTitle()
@@ -72,7 +67,7 @@ public class Album
     }
 
     /**
-     * This method returns the artist of the Album object
+     * This method returns the artist of the Album object.
      * @return a String artist of the Album object
      */
     public String getArtist()
@@ -81,7 +76,7 @@ public class Album
     }
 
     /**
-     * This method returns the genre of the Album object
+     * This method returns the genre of the Album object.
      * @return a Genre genre of the Album object
      */
     public Genre getGenre()
@@ -90,7 +85,7 @@ public class Album
     }
 
     /**
-     * This method returns the release date of the Album object
+     * This method returns the release date of the Album object.
      * @return a Date object releaseDate of the Album object
      */
     public Date getDate()
@@ -99,7 +94,7 @@ public class Album
     }
 
     /**
-     * This method returns the availability of the Album object
+     * This method returns the availability of the Album object.
      * @return a boolean isAvailable of the Date object
      */
     public boolean getIsAvailable()
@@ -108,7 +103,7 @@ public class Album
     }
 
     /**
-     * This method returns an Album object initialized with unknown parameters and today's date
+     * This method returns an Album object initialized with unknown parameters and today's date.
      */
     public Album()
     {
@@ -120,7 +115,7 @@ public class Album
     }
 
     /**
-     * This method returns an Album object initialiazed with given parameters
+     * This method returns an Album object initialized with given parameters title and artist.
      * @param title A String title of the Album object
      * @param artist A String artist of the Album object
      */
@@ -135,7 +130,7 @@ public class Album
 
 
     /**
-     * This method returns an Album object initialized with given parameters
+     * This method returns an Album object initialized with given parameters title, artist, genre, releaseDate, and isAvailable.
      * @param title a String title of the Album object
      * @param artist a String artist of the Album object
      * @param genre a Genre genre of the Album object
@@ -153,7 +148,7 @@ public class Album
 
 
     /**
-     * This method compares two Album objects and checks if they have the same title and artist
+     * This method compares two Album objects and checks if they have the same title and artist.
      * @param obj an Album object
      * @return true if the two Album objects have the same title and artist
      */
@@ -172,7 +167,7 @@ public class Album
     }
 
     /**
-     * This method returns a textual representation of an album
+     * This method returns a textual representation of an album.
      * @return a String in the format title::artist::genre::releaseDate::isAvailable
      */
     @Override
@@ -190,29 +185,5 @@ public class Album
         String splitColons = "::";
 
         return title + splitColons + artist + splitColons + genre.toString() + splitColons + date + splitColons + avail;
-    }
-
-    /**
-     * Testbed main for Album class
-     */
-    public static void main(String[] args)
-    {
-        Album a1 = new Album();
-        System.out.println(a1.toString());
-
-        Date d1 = new Date();
-        Album a2 = new Album("Resonance", "Home", Genre.Jazz, d1, true);
-        System.out.println(a2.toString());
-
-        if (a1.equals(a2)) System.out.println("a1 = a2");
-        else System.out.println("a1 != a2");
-
-        Album a3 = new Album("Resonance", "Home", Genre.Unknown, d1, false);
-        if (a2.equals(a3)) System.out.println("a2 = a3");
-        else System.out.println("a2 != a3");
-
-        System.out.println(a2.getTitle());
-        System.out.println(a2.getArtist());
-        System.out.println(a2.getGenre().toString());
     }
 }

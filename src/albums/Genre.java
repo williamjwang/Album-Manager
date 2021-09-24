@@ -1,7 +1,7 @@
 package albums;
 
 /**
- * This defines the enum Genre
+ * This defines the enum Genre.
  * @author William Wang, Joshua Sze
  */
 public enum Genre
