@@ -2,12 +2,13 @@ package albums;
 
 /**
  * This defines the enum Genre
+ * @author William Wang, Joshua Sze
  */
 public enum Genre
 {
-    classical,
-    country,
-    jazz,
-    pop,
-    unknown
+    Classical,
+    Country,
+    Jazz,
+    Pop,
+    Unknown
 }

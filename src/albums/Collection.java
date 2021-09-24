@@ -24,24 +24,6 @@ public class Collection
     private static final int NOT_FOUND = -1;
 
     /**
-     * This method returns the albums array of the Collection object
-     * @return albums array of the Collection object
-     */
-    public Album[] getAlbums()
-    {
-        return albums;
-    }
-
-    /**
-     * This method returns the number of albums in the Collection object
-     * @return int numAlbums of the Collection object
-     */
-    public int getNumAlbums()
-    {
-        return numAlbums;
-    }
-
-    /**
      * This method returns a Collection object
      */
     public Collection()
@@ -60,27 +42,6 @@ public class Collection
     {
         for (int i = 0; i < numAlbums; i++)
         {
-//            if (album.getTitle().equals(albums[i].getTitle()))
-//            {
-//                if (album.getArtist().equals(albums[i].getArtist()))
-//                {
-//                    if (album.getGenre().toString().equals(albums[i].getGenre().toString()))
-//                    {
-//                        if (album.getDate().compareTo(albums[i].getDate()) == 0)
-//                        {
-//                            if (album.getIsAvailable() == albums[i].getIsAvailable())
-//                            {
-//                                return i;
-//                            }
-//                            else continue;
-//                        }
-//                        else continue;
-//                    }
-//                    else continue;
-//                }
-//                else continue;
-//            }
-//            else continue;
             if (album.equals(albums[i])) return i;
         }
         return NOT_FOUND;
@@ -117,8 +78,6 @@ public class Collection
             //only want to add the album to the collection if it has a valid date
             if (album.getDate().isValid())
             {
-                //if genre is not in Genre, make it unknown?
-
                 albums[numAlbums] = album;
                 numAlbums++;
             }
@@ -151,7 +110,7 @@ public class Collection
                 }
             }
         }
-        else return false; //return false, i.e. not removed, if album is not found
+        else return false;
         return true;
     }
 
@@ -166,16 +125,17 @@ public class Collection
         {
             for (int i = 0; i < numAlbums; i++)
             {
-                if (album.equals(albums[i]) && (albums[i].getIsAvailable() == true))
+                if (album.equals(albums[i]))
                 {
-                    albums[i].setIsAvailable(false);
-                    break;
+                    if (albums[i].getIsAvailable())
+                    {
+                        albums[i].setIsAvailable(false);
+                        return true;
+                    }
                 }
-                else return false;
             }
         }
-        else return false;
-        return true;
+        return false;
     } //set to not available
 
     /**
@@ -189,16 +149,17 @@ public class Collection
         {
             for (int i = 0; i < numAlbums; i++)
             {
-                if (album.equals(albums[i]) && (albums[i].getIsAvailable() == false))
+                if (album.equals(albums[i]))
                 {
-                    albums[i].setIsAvailable(true);
-                    break;
+                    if (!albums[i].getIsAvailable())
+                    {
+                        albums[i].setIsAvailable(true);
+                        return true;
+                    }
                 }
-                else return false;
             }
         }
-        else return false;
-        return true;
+        return false;
     } //set to available
 
     /**
@@ -224,45 +185,22 @@ public class Collection
      */
     public void printByReleaseDate()
     {
-//        Album[] albumsCopy = new Album[numAlbums];
-//        for (int i = 0; i < numAlbums; i++)
-//        {
-//            albumsCopy[i].setTitle(albums[i].getTitle());
-//            albumsCopy[i].setArtist(albums[i].getArtist());
-//            albumsCopy[i].setGenre(albums[i].getGenre());
-//            albumsCopy[i].setDate(albums[i].getDate());
-//            albumsCopy[i].setIsAvailable(albums[i].getIsAvailable());
-//        }
-//        Album temp =  albumsCopy[0];
-//        int AFTER = 1;
-//        for (int i = 0; i < albumsCopy.length; i++)
-//        {
-//            if (temp.getDate().compareTo(albumsCopy[i].getDate()) == AFTER)
-//            {
-//                temp = albumsCopy[i];
-//            }
-//            System.out.println(temp.toString());
-//
-//            for (int j = 0; j< numAlbums; j++)
-//            {
-//                if (temp.equals(albumsCopy[i]))
-//                {
-//                    for (int k = j; k < numAlbums; k++)
-//                    {
-//                        albumsCopy[k] = albumsCopy[k+1];
-//                    }
-//                    albumsCopy[numAlbums - 1] = null;
-//                    numAlbums--;
-//                    break;
-//                }
-//            }
-//        }
         int BEFORE = -1;
         if (numAlbums == 0) System.out.println("The collection is empty!");
         else
         {
             System.out.println("*Album collection by the release dates.");
-            Album[] dateAlbum = albums;
+            Album[] dateAlbum = new Album[albums.length];
+            for (int i = 0; i < numAlbums; i++)
+            {
+                dateAlbum[i] = new Album();
+                dateAlbum[i].setTitle(albums[i].getTitle());
+                dateAlbum[i].setArtist(albums[i].getArtist());
+                dateAlbum[i].setGenre(albums[i].getGenre());
+                dateAlbum[i].setDate(albums[i].getDate());
+                dateAlbum[i].setIsAvailable(albums[i].getIsAvailable());
+            }
+
             for (int i = 0; i < numAlbums - 1; i++)
             {
                 int min_date_index = i;
@@ -294,7 +232,7 @@ public class Collection
             //print all Classical albums in albums array
             for (int i = 0; i < numAlbums; i++)
             {
-                if (albums[i].getGenre().toString().equals(Genre.classical.toString()))
+                if (albums[i].getGenre().toString().equals(Genre.Classical.toString()))
                 {
                     System.out.println(albums[i].toString());
                 }
@@ -302,7 +240,7 @@ public class Collection
             //print all Country albums in albums array
             for (int i = 0; i < numAlbums; i++)
             {
-                if (albums[i].getGenre().toString().equals(Genre.country.toString()))
+                if (albums[i].getGenre().toString().equals(Genre.Country.toString()))
                 {
                     System.out.println(albums[i].toString());
                 }
@@ -310,7 +248,7 @@ public class Collection
             //print all Jazz albums in albums array
             for (int i = 0; i < numAlbums; i++)
             {
-                if (albums[i].getGenre().toString().equals(Genre.jazz.toString()))
+                if (albums[i].getGenre().toString().equals(Genre.Jazz.toString()))
                 {
                     System.out.println(albums[i].toString());
                 }
@@ -318,7 +256,7 @@ public class Collection
             //print all Pop albums in albums array
             for (int i = 0; i < numAlbums; i++)
             {
-                if (albums[i].getGenre().toString().equals(Genre.pop.toString()))
+                if (albums[i].getGenre().toString().equals(Genre.Pop.toString()))
                 {
                     System.out.println(albums[i].toString());
                 }
@@ -326,7 +264,7 @@ public class Collection
             //print all Unknown albums in albums array
             for (int i = 0; i < numAlbums; i++)
             {
-                if (albums[i].getGenre().toString().equals(Genre.unknown.toString()))
+                if (albums[i].getGenre().toString().equals(Genre.Unknown.toString()))
                 {
                     System.out.println(albums[i].toString());
                 }
@@ -337,7 +275,6 @@ public class Collection
 
     /**
      * Testbed main for Collection class
-     * @param args
      */
     public static void main (String[] args)
     {
@@ -352,13 +289,13 @@ public class Collection
 //        c.printByGenre();
 
         Date D1 = new Date("7/9/2000");
-        Album b1 = new Album("apples", "johnny appleseed", Genre.pop, D1, true);
+        Album b1 = new Album("apples", "johnny appleseed", Genre.Pop, D1, true);
 
         Date D2 = new Date("8/6/1995");
-        Album b2 = new Album("oranges", "johnny orangeseed", Genre.classical, D2, true);
+        Album b2 = new Album("oranges", "johnny orangeseed", Genre.Classical, D2, true);
 
         Date D3 = new Date("12/15/1997");
-        Album b3 = new Album("lemons", "johnny lemonseed", Genre.unknown, D3, true);
+        Album b3 = new Album("lemons", "johnny lemonseed", Genre.Unknown, D3, true);
 
         c.add(b1);
         c.add(b2);
