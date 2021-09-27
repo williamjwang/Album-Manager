@@ -148,11 +148,7 @@ public class Date implements Comparable<Date>
 
         //Check if date is after today's date
         Calendar today = Calendar.getInstance();
-
-        if (year > today.get(Calendar.YEAR))
-        {
-            return false;
-        }
+        if (year > today.get(Calendar.YEAR)) return false;
         if ((year == today.get(Calendar.YEAR)) && (month > today.get(Calendar.MONTH) + 1))
         {
             return false;
@@ -165,10 +161,8 @@ public class Date implements Comparable<Date>
         }
 
         //Check if the date is valid for the given year and month
-        if (isValidDay(year, month, day) == false)
-        {
-            return false;
-        }
+        if (isValidDay(year, month, day) == false) return false;
+
         if (month < 1 || month > 12) return false;
         return true;
     }
