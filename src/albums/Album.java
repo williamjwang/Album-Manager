@@ -13,42 +13,6 @@ public class Album
     private boolean isAvailable;
 
     /**
-     * This method sets/changes the title of the Album object.
-     * @param title a String representing the title of Album object being changed to
-     */
-    public void setTitle(String title)
-    {
-        this.title = title;
-    }
-
-    /**
-     * This method sets/changes the artist of the Album object.
-     * @param artist a String representing the artist of Album object being changed to
-     */
-    public void setArtist(String artist)
-    {
-        this.artist = artist;
-    }
-
-    /**
-     * This method sets/changes the genre of the Album object.
-     * @param genre a Genre representing the genre of Album object being changed to
-     */
-    public void setGenre(Genre genre)
-    {
-        this.genre = genre;
-    }
-
-    /**
-     * This method sets/changes the release date of the Album object.
-     * @param releaseDate a String representing the release date of Album object being changed to
-     */
-    public void setDate(Date releaseDate)
-    {
-        this.releaseDate = releaseDate;
-    }
-
-    /**
      * This method sets/changes the availability of the Album object.
      * @param isAvailable a boolean representing the availability of Album object being changed to
      */
@@ -107,11 +71,7 @@ public class Album
      */
     public Album()
     {
-        this.title = "UNKNOWN TITLE";
-        this.artist = "UNKNOWN ARTIST";
-        this.genre = Genre.Unknown;
-        this.releaseDate = new Date();
-        this.isAvailable = true;
+        this("UNKNOWN TITLE", "UNKNOWN ARTIST", Genre.Unknown, new Date(), true);
     }
 
     /**
@@ -121,13 +81,8 @@ public class Album
      */
     public Album(String title, String artist)
     {
-        this.title = title;
-        this.artist = artist;
-        this.genre = Genre.Unknown;
-        this.releaseDate = new Date();
-        this.isAvailable = true;
+        this(title, artist, Genre.Unknown, new Date(), true);
     }
-
 
     /**
      * This method returns an Album object initialized with given parameters title, artist, genre, releaseDate, and isAvailable.
