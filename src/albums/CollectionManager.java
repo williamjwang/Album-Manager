@@ -118,5 +118,7 @@ public class CollectionManager
             inputLine = s.nextLine();
         }
         System.out.println("Collection Manager terminated.");
+        
+        s.close();
     }
 }
